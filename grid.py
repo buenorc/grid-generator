@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 from shapely.geometry import Polygon, Point
 
-n = 280  # number of grid points in n-direction
-m = 200  # number of grid points in m-direction 
+n = 450  # number of grid points in n-direction
+m = 400  # number of grid points in m-direction 
 
 
 sf = shp.Reader('.\shapefiles\landboundary_passauna')
@@ -40,7 +40,8 @@ yg = np.linspace(min(y),max(y),n)
 
 x_grid, y_grid = np.meshgrid(xg, yg)
 
-
+dx = xg[1] - xg[0] 
+dy = yg[1] - yg[0]
 
 for mi in range(m-1):
     for ni in range(n-1):
@@ -110,4 +111,5 @@ for ni in range(n):
 
 file_grd.close()
 
-
+print('x-grid = '+str(round(dx,2))+' m')
+print('y-grid = '+str(round(dy,2))+' m')
