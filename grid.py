@@ -41,7 +41,7 @@ def main (path_shape,m,n,folder_path):
     sys.stdout = StdoutRedirector(outputPanel)
     print ("> ")
     root.update()
-    print ("> Grid generator is been loaded...")
+    print ("> Grid generator is being loaded...")
     root.update()
     print ("> -----------------------------------")
     root.update()
