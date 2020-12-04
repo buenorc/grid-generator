@@ -15,6 +15,6 @@ To run the code, the user must have installed the following packages in a Python
 
 1) Numpy
 2) Shapely 
-3) Shapefile
+3) Shapefile (pyshp)
 
 
