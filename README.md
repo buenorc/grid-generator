@@ -1,8 +1,8 @@
-# Grid generator
+# Grid generator (with GUI)
 
 ## Rectangular grid generator for Delft3d numerical model based on closed landboundary file (shapefile)
 
-The algorithm requires as input the following information:
+The algorithm requires as input data the following information:
 
 1) a shapefile (.shp) 
 2) pair of integers related to the number of grid poits (-1) in m- and n- direction (integers) 
@@ -15,6 +15,7 @@ To run the code, the user must have installed the following packages in a Python
 
 1) Numpy
 2) Shapely 
-3) Shapefile (pyshp)
+3) Pyshp (shapefile)
+4) Tkinter (for the GUI)
 
 
