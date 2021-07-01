@@ -8,7 +8,7 @@ import numpy as np
 import shapefile as shp
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
-from shapely.geometry import Polygon, Point
+from shapely.geometry import Polygon, Point, MultiPolygon
 from tkinter import *
 
 
@@ -64,9 +64,14 @@ def main (path_shape,m,n,folder_path):
     mask     = np.zeros((n-1,m-1),bool)
 
     points = [pt.shape.__geo_interface__ for pt in sf.shapeRecords()]
-    points = points[0]['coordinates']
 
-    poly = Polygon(points)
+    try:
+        points = points[0]['coordinates']
+        poly = Polygon(points)
+    except:
+        print('Error to define the geometry type of shapefile\n')
+        print('Please, change geometry type of .shp to linestring\n\n')
+        
 
     for shape in sf.shapeRecords():
         x = [i[0] for i in shape.shape.points[:]]
@@ -106,10 +111,12 @@ def main (path_shape,m,n,folder_path):
 
     fig, ax = plt.subplots(1,3,figsize=(10,5))
     ax[0].plot(x, y, color = 'black')
+    ax[0].axis('equal')
+    
     ax[1].plot(x, y, color = 'black')
-
-
     plt.axes(ax[1])
+    ax[1].axis('equal')
+    
     plt.gca().add_collection(LineCollection(segs1,lw=0.8,color='gray'))
     plt.gca().add_collection(LineCollection(segs2,lw=0.8,color='gray'))
     ax[1].scatter(x_grid,y_grid,s=3,marker='+', c = 'black')
@@ -122,7 +129,8 @@ def main (path_shape,m,n,folder_path):
     plt.gca().add_collection(LineCollection(segs3,lw=0.8,color='gray'))
     plt.gca().add_collection(LineCollection(segs4,lw=0.8,color='gray'))
     
-
+    
+    ax[2].axis('equal')
     fig.tight_layout()
     plt.savefig(folder_path+'/grid.jpg',dpi=1000)
     plt.show()
